@@ -33,6 +33,16 @@ class Library {
     }
     this.#books.push(book);
   }
+
+  findGenre(searchTerm) {
+    const results = [];
+    this.books.forEach((book) => {
+      if (book.genre === searchTerm) {
+        results.push(book);
+      }
+    });
+    return results;
+  }
 }
 
 class Book {
@@ -79,5 +89,6 @@ class Publisher {
     this.collection = collection;
   }
 }
+
 
 export { Library, Book, Author, Publisher };

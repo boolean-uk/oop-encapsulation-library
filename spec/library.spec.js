@@ -76,9 +76,11 @@ describe("Library", () => {
   })
 
   it("should find and return books from genre search terms", () => {
-    expect(library.find('genre', 'fantasy')).toEqual(testBook)
-    expect(library.find('author', 'Robin')).toEqual(testBook)
-    expect(library.find('publisher', 'Penguin')).toEqual(testBook)
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook)
+
+
+    expect(library.findGenre('fantasy')).toEqual([testBook])
   })
 });
 
