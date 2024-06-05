@@ -30,6 +30,12 @@ describe('Library', () => {
         expect(library.listBooks()).toContain('We')
     })
 
+    it('should not add a duplicate book to the library catalogue', () => {
+        library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
+        library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
+        expect(library.listBooks().length).toBe(0)
+    })
+
     it('should remove a book from the library', () => {
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
         library.removeBook('We')

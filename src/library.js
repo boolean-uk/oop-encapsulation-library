@@ -33,10 +33,14 @@ class Library {
     #books = []
 
     addBook(title, author, genre, publicationYear) {
+        if (!this.#books.some(book => book.getTitle() === title)) {
         const book = new Book(title, author, genre, publicationYear)
         this.#books.push(book)
         console.log(`Book added: ${title}`)
+    } else {
+        console.log(`Book already exists: ${title}`)
     }
+}
 
     removeBook(title) {
         const initialLength= this.#books.length
