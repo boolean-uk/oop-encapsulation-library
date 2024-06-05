@@ -51,7 +51,6 @@ describe("Library", () => {
   });
 
   it('requires books to have a publisher with name, website, and collection', () => {
-    // title, author, publicationDate, genre, publisher
     const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
     const myPublisher = new Publisher("Penguin", 'www.penguin.com', ['Example Book 1'])
     const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
@@ -59,6 +58,15 @@ describe("Library", () => {
     library.addBook(myBook)
 
     expect(library.books[0].publisher.name).toEqual("Penguin")
+  })
+
+  it('requires books to have a publisher with name, website, and collection', () => {
+    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+    const myPublisher = new Publisher("Penguin", '', ['Example Book 1'])
+    const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
+    )
+    
+    expect(() => {library.addBook(myBook)}).toThrowError("Books require a publisher with name, website, and collection")
   })
 });
 
