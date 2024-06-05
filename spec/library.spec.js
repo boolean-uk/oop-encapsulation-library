@@ -16,8 +16,15 @@ describe('Library', () => {
     it('should add the book to the library', () => {
         const book = new Book("The Corporation", "TJ English", "13 March 2018")
         library.add(book)
-        console.log(library.books)
         expect(library.books.length).toBe(1)
         expect(library.books[0].title).toBe('The Corporation')
+    })
+    it('should get all books', () => {
+        const book = new Book("The Corporation", "TJ English", "13 March 2018")
+        library.add(book)
+        const book1 = new Book("Born to run", "Christopher McDougall", "5 May 2009")
+        library.add(book1)
+        library.books
+        expect(library.books.length).toBe(2)
     })
 })

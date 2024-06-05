@@ -46,4 +46,3 @@ library.add(book);
 library.add(book1);
 library.add(book3);
 library.add(book4);
-console.log(library.books.title)
