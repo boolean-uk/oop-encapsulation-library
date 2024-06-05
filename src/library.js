@@ -2,11 +2,11 @@ class Library {
   #books;
 
   constructor(books = []) {
-    this.#books = books;
+    this.#books = [...books];
   }
 
   get books() {
-    return this.#books;
+    return [...this.#books];
   }
 
   addBook(book) {
@@ -110,6 +110,10 @@ class Publisher {
     this.collection = collection
   }
 }
+
+const test = new Library
+test.books.push('test')
+console.log(test.books)
 
 
 export { Library, Book, Author, Publisher };
