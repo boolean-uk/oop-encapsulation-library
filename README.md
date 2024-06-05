@@ -9,6 +9,8 @@
 Create a library application where users can manage a collection of books. Use encapsulation to put related data and behaviour into individual classes.
 
 - The library should be able to add, remove and list books
+- Code should not be able to add or remove books from outside of the library class, you **must** go through the library class to make these changes
+  - E.g. `library.books = ['A Game of Thrones']` should not work
 - Books should have a title, author, genre and publication date
 - Use access modifiers (`#`) and `get`, `set` functions to prevent the unnecessary changing of data outside of classes
 - The title, author and publication date of a book should be immutable, they should never be able to change in value once set
