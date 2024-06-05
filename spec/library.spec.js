@@ -42,6 +42,11 @@ describe('Library', () => {
         expect(library.listBooks()).not.toContain('We')
     })
 
+    it('should not remove a non-existent book from the library', () => {
+        library.removeBook('Alice In Wonderland')
+        expect(library.listBooks()).not.toContain('We')
+    })
+
     it('should list books in the library', () => {
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
         library.addBook('The Chimp Paradox', 'Prof Steve Peters', 'Self-Help', '2012')
