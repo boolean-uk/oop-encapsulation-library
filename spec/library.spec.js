@@ -82,6 +82,22 @@ describe("Library", () => {
 
     expect(library.findGenre('fantasy')).toEqual([testBook])
   })
+
+  it("should find and return books from author search terms", () => {
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook)
+
+
+    expect(library.findAuthor('Robin Hobb')).toEqual([testBook])
+  })
+
+  it("should find and return books from publisher search terms", () => {
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook)
+
+
+    expect(library.findPublisher('Penguin')).toEqual([testBook])
+  })
 });
 
 

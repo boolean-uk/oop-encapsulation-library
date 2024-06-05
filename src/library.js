@@ -43,6 +43,26 @@ class Library {
     });
     return results;
   }
+
+  findAuthor(searchTerm) {
+    const results = [];
+    this.books.forEach((book) => {
+      if (book.author.name === searchTerm) {
+        results.push(book);
+      }
+    });
+    return results;
+  }
+
+  findPublisher(searchTerm) {
+    const results = [];
+    this.books.forEach((book) => {
+      if (book.publisher.name === searchTerm) {
+        results.push(book);
+      }
+    });
+    return results;
+  }
 }
 
 class Book {
