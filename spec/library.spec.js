@@ -49,7 +49,20 @@ describe("Library", () => {
       "Books being added to this library require the author to have a name, age, and email address"
     );
   });
+
+  it('requires books to have a publisher with name, website, and collection', () => {
+    // title, author, publicationDate, genre, publisher
+    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+    const myPublisher = new Publisher("Penguin", 'www.penguin.com', ['Example Book 1'])
+    const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
+    )
+    library.addBook(myBook)
+
+    expect(library.books[0].publisher.name).toEqual("Penguin")
+  })
 });
+
+
 
 describe("Author", () => {
   it("should have a name, age, and email", () => {
