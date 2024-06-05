@@ -1,3 +1,4 @@
+import exp from "constants";
 import Library, { Book } from "../src/library.js";
 
 describe('Library', () => {
@@ -26,5 +27,14 @@ describe('Library', () => {
         library.add(book1)
         library.books
         expect(library.books.length).toBe(2)
+    })
+    it('should remove a book from the library', () => {
+        const book = new Book("The Corporation", "TJ English", "13 March 2018")
+        library.add(book)
+        const book1 = new Book("Born to run", "Christopher McDougall", "5 May 2009")
+        library.add(book1)
+        library.remove(book1)
+        expect(library.books.length).toBe(1)
+        expect(library.books[0].title).toBe("The Corporation")
     })
 })
