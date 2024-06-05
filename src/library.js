@@ -15,6 +15,11 @@ class Library {
         'This library requires a book with a title, author, genre, and year'
       );
     }
+
+    if (!book.author.name || !book.author.age || !book.author.email) {
+        throw new Error('Books being added to this library require the author to have a name, age, and email address')
+    }
+    
     this.#books.push(book);
   }
 }
@@ -37,5 +42,13 @@ class Author {
     }
 }
 
+class Publisher {
+    constructor(name, website, collection) {
+        this.name = name
+        this.website = website
+        this.collection = collection
+    }
+}
 
-export { Library, Book, Author };
+
+export { Library, Book, Author, Publisher };
