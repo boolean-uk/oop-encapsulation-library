@@ -29,9 +29,13 @@ class Book {
   }
 }
 
-// const library = new Library();
-// library.addBook(new Book("cheese", "tomato", "pies"));
+class Author {
+    constructor(name, age, email) {
+        this.name = name
+        this.age = age
+        this.email = email
+    }
+}
 
-// console.log(library.books);
 
-export { Library, Book };
+export { Library, Book, Author };

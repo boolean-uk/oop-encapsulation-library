@@ -1,4 +1,4 @@
-import { Library, Book } from '../src/library.js'
+import { Library, Book, Author } from '../src/library.js'
 
 describe ('Library', ()=> {
     let library;
@@ -21,4 +21,13 @@ describe ('Library', ()=> {
 
         expect(() => {library.addBook(new Book('', 'John Steinbeck', '1939', 'classic fiction'))}).toThrowError('This library requires a book with a title, author, genre, and year')
     })
+})
+
+describe ('Author', ()=> {
+    it('should have a name, age, and email', () => {
+        const myAuthor = new Author('Robin Hobb', '60', 'robin@hobb.com')
+
+        expect (myAuthor.name).toEqual('Robin Hobb')
+    })
+
 })
