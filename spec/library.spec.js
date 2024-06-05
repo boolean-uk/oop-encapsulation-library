@@ -30,6 +30,12 @@ describe('Library', () => {
         expect(library.listBooks()).toContain('We')
     })
 
+    it('should remove a book from the library', () => {
+        library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
+        library.removeBook('Weave')
+        expect(library.listBooks()).not.toContain('We')
+    })
+
     it('should list books in the library', () => {
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
         library.addBook('The Chimp Paradox', 'Prof Steve Peters', 'Self-Help', '2012')

@@ -38,6 +38,16 @@ class Library {
         console.log(`Book added: ${title}`)
     }
 
+    removeBook(title) {
+        const initialLength= this.#books.length
+        this.#books = this.#books.filter(book => book.getTitle() !== title)
+        if (this.#books.length < initialLength) {
+            console.log(`Book removed: ${title}`)
+        } else {
+            console.log(`Book not found ${title}`)
+        }
+    }
+
     listBooks() {
         const bookTitles = this.#books.map(book => book.getTitle())
         console.log(`Books in library: ${bookTitles.join(', ')}`)
