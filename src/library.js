@@ -73,6 +73,21 @@ class Library {
       },
     }))
   }
+
+  searchCollection(input) {
+    const result = this.listCollection().filter(
+      (book) =>
+        book.genre === input ||
+        book.publisher.name === input ||
+        book.author.name === input
+    )
+
+    if (result.length === 0) {
+      throw new Error("Book not found")
+    }
+
+    return result
+  }
 }
 
 class Book {
