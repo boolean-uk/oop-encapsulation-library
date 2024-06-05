@@ -13,25 +13,28 @@ describe("Library", () => {
 
   it("should throw an error if we add a book without a name, author, genre, or year", () => {
     expect(() => {
-      library.addBook(
-        new Book("", "John Steinbeck", "1939", "classic fiction")
-      );
+        const myBook = new Book("", "John Steinbeck", "1939", "classic fiction")
+      library.addBook(myBook.bookCopy)
+
     }).toThrowError(
       "This library requires a book with a title, author, genre, and year"
     );
   });
 
-  it("should accept a book with an author class as its author", () => {
+  it("should accept a book with an author with details", () => {
     const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+    const myPublisher = new Publisher("Penguin", 'www.penguin.com', ['Example Book 1'])
     const myBook = new Book(
       "Assassin's Apprentice",
       myAuthor,
       "2001",
-      "fantasy"
+      "fantasy",
+      myPublisher
     );
-    library.addBook(myBook);
-
-    expect(library.books[0].author.name).toEqual("Robin Hobb");
+    
+    library.addBook(myBook.bookCopy);
+    
+    expect(library.books[0].author.age).toEqual('60');
   });
 
   it("should reject a book if its author it misses either a name, age, or email", () => {
@@ -44,7 +47,7 @@ describe("Library", () => {
     );
     
     expect(() => {
-      library.addBook(myBook);
+      library.addBook(myBook.bookCopy);
     }).toThrowError(
       "Books being added to this library require the author to have a name, age, and email address"
     );
@@ -55,7 +58,7 @@ describe("Library", () => {
     const myPublisher = new Publisher("Penguin", 'www.penguin.com', ['Example Book 1'])
     const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
     )
-    library.addBook(myBook)
+    library.addBook(myBook.bookCopy)
 
     expect(library.books[0].publisher.name).toEqual("Penguin")
   })
@@ -66,7 +69,7 @@ describe("Library", () => {
     const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
     )
     
-    expect(() => {library.addBook(myBook)}).toThrowError("Books require a publisher with name, website, and collection")
+    expect(() => {library.addBook(myBook.bookCopy)}).toThrowError("Books being added to this library require a publisher with name and website")
   })
 });
 
