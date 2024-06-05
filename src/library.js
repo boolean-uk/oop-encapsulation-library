@@ -103,10 +103,11 @@ class Author {
 }
 
 class Publisher {
+
   constructor(name, website, collection = []) {
     this.name = name;
     this.website = website;
-    this.collection = collection;
+    this.collection = collection
   }
 }
 
