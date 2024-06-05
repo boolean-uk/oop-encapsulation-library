@@ -31,7 +31,6 @@ class Library {
         "Books being added to this library require a publisher with name, website, and this book in their collection"
       );
     }
-
     this.#books.push(book);
   }
 }

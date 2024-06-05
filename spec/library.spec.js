@@ -67,6 +67,17 @@ describe("Library", () => {
     
     expect(library.books[0].publisher.collection[0].title).toEqual(testBook.title)
   })
+
+  it("should accept books that are contained within their publishers collection", () => {
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook)
+    
+    expect(library.books[0].publisher.collection[0].title).toEqual(testBook.title)
+  })
+
+  it("should find and return books from genre search terms", () => {
+    expect(library.findGenre('fantasy')).toEqual(testBook)
+  })
 });
 
 
