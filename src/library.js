@@ -1,27 +1,42 @@
 class Library {
-    #books
+    #collection
 
     constructor() {
-        this.#books = []
+        this.#collection = []
+    }
+
+    get collection() {
+        return this.#collection
     }
 
     addBook(title, author, genre, publicationDate) {
+        if ([title, author, genre, publicationDate].some(prop => typeof prop !== 'string' || prop === '')) {
+            throw new Error("Book's properties should be provided correctly")
+        }
+
         const bookToAdd = new Book(title, author, genre, publicationDate)
-        this.#books.push(bookToAdd)
+        this.#collection.push(bookToAdd)
     }
 
     removeBook(title) {
-        const bookToRemove = this.#books.findIndex((book) => book.title === title)
+        const bookToRemove = this.#collection.findIndex(book => book.title === title)
 
         if (bookToRemove === -1) {
             throw new Error('Book not found')
         }
 
-        this.#books.splice(bookToRemove, 1)
+        this.#collection.splice(bookToRemove, 1)
     }
 
-    listBooks() {
-        return [...this.#books]
+    collectionList() {
+        return this.#collection.map(book => (
+            {
+                title: book.title,
+                author: book.author,
+                genre: book.genre,
+                publicationDate: book.publicationDate
+            }
+        ))
     }
 }
 
@@ -48,6 +63,10 @@ class Book {
 
     get genre() {
         return this.#genre
+    }
+
+    set genre(newGenre) {
+        this.#genre = newGenre
     }
 
     get publicationDate() {
