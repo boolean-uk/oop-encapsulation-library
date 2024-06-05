@@ -71,6 +71,16 @@ describe("Library", () => {
     
     expect(() => {library.addBook(myBook.bookCopy)}).toThrowError("Books being added to this library require a publisher with name and website")
   })
+
+  it("requires that a publisher's collection contains the book to be added", () => {
+    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+    const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy")
+    expect(() => {library.addBook(myBook.bookCopy)}).toThrowError("Publisher's collection should contain book to be published")
+
+    myBook.publisher = new Publisher("Penguin", '', [myBook])    
+    library.addBook(myBook.bookCopy)
+    expect(library.books.length).toEqual(1)
+  })
 });
 
 
