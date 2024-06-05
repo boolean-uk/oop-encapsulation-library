@@ -19,18 +19,16 @@ describe("Library", () => {
   });
 
   it("should throw an error if we add a book without a name, author, genre, or year", () => {
+    const myBook = new Book("", "John Steinbeck", "1939", "classic fiction")
     expect(() => {
-        const myBook = new Book("", "John Steinbeck", "1939", "classic fiction")
-      library.addBook(myBook.bookCopy)
-
-    }).toThrowError(
+      library.addBook(myBook)}).toThrowError(
       "This library requires a book with a title, author, genre, and year"
     );
   });
 
   it("should accept a book with an author with details", () => {
-    testBook.publisher.collection.push(testBook.bookCopy.title)
-    library.addBook(testBook.bookCopy);
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook);
     
     expect(library.books[0].author.age).toEqual('60');
   });
@@ -45,28 +43,27 @@ describe("Library", () => {
     );
     
     expect(() => {
-      library.addBook(test2Book.bookCopy);
+      library.addBook(test2Book);
     }).toThrowError(
       "Books being added to this library require the author to have a name, age, and email address"
     );
   });
 
   it('requires books to have a publisher with name, website, and collection', () => {
-    testBook.publisher.collection.push(testBook.bookCopy.title)
-    
-    library.addBook(testBook.bookCopy)
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook)
 
     expect(library.books[0].publisher.name).toEqual("Penguin")
   })
 
   it('requires books to have a publisher with name, website, and collection containing book to be added', () => {
     
-    expect(() => {library.addBook(testBook.bookCopy)}).toThrowError("Books being added to this library require a publisher with name, website, and this book in their collection")
+    expect(() => {library.addBook(testBook)}).toThrowError("Books being added to this library require a publisher with name, website, and this book in their collection")
   })
 
   it("should accept books that are contained within their publishers collection", () => {
-    testBook.publisher.collection.push(testBook.bookCopy.title)
-    library.addBook(testBook.bookCopy)
+    testBook.publisher.collection.push(testBook)
+    library.addBook(testBook)
     
     expect(library.books[0].publisher.collection[0].title).toEqual(testBook.title)
   })

@@ -6,7 +6,7 @@ class Library {
   }
 
   get books() {
-    return structuredClone(this.#books);
+    return this.#books;
   }
 
   addBook(book) {
@@ -22,7 +22,11 @@ class Library {
       );
     }
 
-    if (!book.publisher.name || !book.publisher.website || !book.publisher.collection.includes(book.title)) {
+    if (
+      !book.publisher.name ||
+      !book.publisher.website ||
+      !book.publisher.collection.includes(book)
+    ) {
       throw new Error(
         "Books being added to this library require a publisher with name, website, and this book in their collection"
       );
@@ -36,6 +40,10 @@ class Book {
   #title;
   #author;
   #publicationDate;
+
+  genre;
+  publisher;
+
   constructor(title, author, publicationDate, genre, publisher) {
     this.#title = title;
     this.#author = author;
@@ -44,14 +52,16 @@ class Book {
     this.publisher = publisher;
   }
 
-  get bookCopy() {
-    return {
-      title: this.#title,
-      author: this.#author,
-      publicationDate: this.#publicationDate,
-      genre: this.genre,
-      publisher: this.publisher,
-    };
+  get title() {
+    return this.#title;
+  }
+
+  get author() {
+    return this.#author;
+  }
+
+  get publicationDate() {
+    return this.#publicationDate;
   }
 }
 
@@ -71,15 +81,4 @@ class Publisher {
   }
 }
 
-// const myLibrary = new Library()
-// const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
-// const myPublisher = new Publisher("Penguin", 'www.penguin.com', [])
-// const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
-// )
-// myBook.publisher.collection.push(myBook.bookCopy.title)
-
-// console.log(myBook.bookCopy.title)
-// console.log(myBook.bookCopy.publisher.collection)
-
-// myLibrary.addBook(myBook.bookCopy)
 export { Library, Book, Author, Publisher };
