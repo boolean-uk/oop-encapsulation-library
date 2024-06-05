@@ -9,7 +9,6 @@ class Book {
         this.#author = author
         this.#genre = genre
         this.#publicationYear = publicationYear
-        console.log(`Book details added: ${this.#title} by ${this.#author}`)
     }
 
     getTitle() {
@@ -28,6 +27,8 @@ class Book {
         return this.#publicationYear
     }
 }
+
+console.log(`Book details added: ${this.#title} by ${this.#author}`)
 
 class Library {
     #books = []
