@@ -34,3 +34,16 @@ class Library {
     return newLibray;
   }
 }
+export { Book }
+export default Library
+
+const book = new Book("The Corporation", "TJ English", "13 March 2018");
+const book1 = new Book("Born to run", "Christopher McDougall", "5 May 2009");
+const book3 = new Book("The story of film", "Mark Cousins", "2004");
+const book4 = new Book("Fingerprints of the gods", "Graham Hancock", "1995s");
+const library = new Library();
+library.add(book);
+library.add(book1);
+library.add(book3);
+library.add(book4);
+console.log(library.books.title)
