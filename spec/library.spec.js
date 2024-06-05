@@ -33,7 +33,7 @@ describe('Library', () => {
     it('should not add a duplicate book to the library catalogue', () => {
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
-        expect(library.listBooks().length).toBe(0)
+        expect(library.listBooks().length).toBe(1)
     })
 
     it('should remove a book from the library', () => {
