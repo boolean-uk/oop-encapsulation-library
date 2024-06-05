@@ -11,6 +11,7 @@ Create a library application where users can manage a collection of books. Use e
 - The library should be able to add, remove and list books
 - Books should have a title, author, genre and publication date
 - Use access modifiers (`#`) and `get`, `set` functions to prevent the unnecessary changing of data outside of classes
+- The title, author and publication date of a book should be immutable, they should never be able to change in value once set
 - Create unit tests to verify your functionality. You don't need to practice TDD for this, you can create the tests after writing the source code
   - You must have at least one test for every function you create
 
