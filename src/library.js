@@ -6,21 +6,21 @@ class Library {
     }
 
     get books() {
-        return structuredClone(this.#books)
+        return this.#books
     }
 
     addBook(title, author, genre, publicationDate, publisher) {
         const bookToAdd = new Book(title, author, genre, publicationDate, publisher)
 
-        if (!bookToAdd.book.author.age || !bookToAdd.book.author.name || !bookToAdd.book.author.email) {
+        if (!bookToAdd.author.age || !bookToAdd.author.name || !bookToAdd.author.email) {
             throw 'author must have a name, age and email'
         }
 
-        if (!bookToAdd.book.publisher.name || !bookToAdd.book.publisher.website) {
+        if (!bookToAdd.publisher.name || !bookToAdd.publisher.website) {
             throw 'publisher must have a name and website'
         }
 
-        this.#books.push(bookToAdd.book)
+        this.#books.push(bookToAdd)
     }
 
     removeBook(title) {
@@ -52,14 +52,20 @@ class Book {
         this.#publisher = publisher
     }
 
-    get book() {
-        return { 
-            title: this.#title,
-            author: this.#author,
-            genre: this.genre,
-            publicationDate: this.#publicationDate,
-            publisher: this.#publisher
-        }
+    get title() {
+        return this.#title
+    }
+
+    get author() {
+        return this.#author
+    }
+
+    get publicationDate() {
+        return this.#publicationDate
+    }
+
+    get publisher() {
+        return this.#publisher
     }
 }
 
@@ -79,4 +85,4 @@ class Publisher {
 }
 
 export default Library
-export { Author, Publisher }
+export { Book, Author, Publisher }
