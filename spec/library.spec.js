@@ -2,9 +2,16 @@ import { Library, Book, Author, Publisher } from "../src/library.js";
 
 describe("Library", () => {
   let library;
+  let testPublisher;
+  let testAuthor;
+  let testBook;
 
   beforeEach(() => {
     library = new Library();
+    testPublisher = new Publisher("Penguin", 'www.penguin.com', [])
+    testAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+    testBook = new Book("Assassin's Apprentice", testAuthor, '2001', "fantasy", testPublisher)
+
   });
 
   it("should be a class that can be instantiated", () => {
@@ -22,73 +29,59 @@ describe("Library", () => {
   });
 
   it("should accept a book with an author with details", () => {
-    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
-    const myPublisher = new Publisher("Penguin", 'www.penguin.com', ['Example Book 1'])
-    const myBook = new Book(
-      "Assassin's Apprentice",
-      myAuthor,
-      "2001",
-      "fantasy",
-      myPublisher
-    );
-    
-    library.addBook(myBook.bookCopy);
+    testBook.publisher.collection.push(testBook.bookCopy.title)
+    library.addBook(testBook.bookCopy);
     
     expect(library.books[0].author.age).toEqual('60');
   });
 
-  it("should reject a book if its author it misses either a name, age, or email", () => {
-    const myAuthor = new Author("Robin Hobb", "", "robin@hobb.com");
-    const myBook = new Book(
+  it("should reject a book if its author misses either a name, age, or email", () => {
+    const test2Author = new Author("Robin Hobb", "", "robin@hobb.com");
+    const test2Book = new Book(
       "Assassin's Apprentice",
-      myAuthor,
+      test2Author,
       "2001",
       "fantasy"
     );
     
     expect(() => {
-      library.addBook(myBook.bookCopy);
+      library.addBook(test2Book.bookCopy);
     }).toThrowError(
       "Books being added to this library require the author to have a name, age, and email address"
     );
   });
 
   it('requires books to have a publisher with name, website, and collection', () => {
-    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
-    const myPublisher = new Publisher("Penguin", 'www.penguin.com', ['Example Book 1'])
-    const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
-    )
-    library.addBook(myBook.bookCopy)
+    testBook.publisher.collection.push(testBook.bookCopy.title)
+    
+    library.addBook(testBook.bookCopy)
 
     expect(library.books[0].publisher.name).toEqual("Penguin")
   })
 
-  it('requires books to have a publisher with name, website, and collection', () => {
-    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
-    const myPublisher = new Publisher("Penguin", '', ['Example Book 1'])
-    const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
-    )
+  it('requires books to have a publisher with name, website, and collection containing book to be added', () => {
     
-    expect(() => {library.addBook(myBook.bookCopy)}).toThrowError("Books being added to this library require a publisher with name and website")
+    expect(() => {library.addBook(testBook.bookCopy)}).toThrowError("Books being added to this library require a publisher with name, website, and this book in their collection")
   })
 
-  it("requires that a publisher's collection contains the book to be added", () => {
-    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
-    const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy")
-    expect(() => {library.addBook(myBook.bookCopy)}).toThrowError("Publisher's collection should contain book to be published")
-
-    myBook.publisher = new Publisher("Penguin", '', [myBook])    
-    library.addBook(myBook.bookCopy)
-    expect(library.books.length).toEqual(1)
+  it("should accept books that are contained within their publishers collection", () => {
+    testBook.publisher.collection.push(testBook.bookCopy.title)
+    library.addBook(testBook.bookCopy)
+    
+    expect(library.books[0].publisher.collection[0].title).toEqual(testBook.title)
   })
 });
 
 
 
 describe("Author", () => {
-  it("should have a name, age, and email", () => {
-    const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+    let testAuthor;
+    beforeEach(() => {
+        testAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+      });
 
-    expect(myAuthor.name).toEqual("Robin Hobb");
+  it("should have a name, age, and email", () => {
+
+    expect(testAuthor.name).toEqual("Robin Hobb");
   });
 });

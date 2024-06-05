@@ -22,9 +22,9 @@ class Library {
       );
     }
 
-    if (!book.publisher.name || !book.publisher.website) {
+    if (!book.publisher.name || !book.publisher.website || !book.publisher.collection.includes(book.title)) {
       throw new Error(
-        "Books being added to this library require a publisher with name and website"
+        "Books being added to this library require a publisher with name, website, and this book in their collection"
       );
     }
 
@@ -64,12 +64,22 @@ class Author {
 }
 
 class Publisher {
-  constructor(name, website, collection) {
+  constructor(name, website, collection = []) {
     this.name = name;
     this.website = website;
     this.collection = collection;
   }
 }
 
+// const myLibrary = new Library()
+// const myAuthor = new Author("Robin Hobb", "60", "robin@hobb.com");
+// const myPublisher = new Publisher("Penguin", 'www.penguin.com', [])
+// const myBook = new Book("Assassin's Apprentice", myAuthor, '2001', "fantasy", myPublisher
+// )
+// myBook.publisher.collection.push(myBook.bookCopy.title)
 
+// console.log(myBook.bookCopy.title)
+// console.log(myBook.bookCopy.publisher.collection)
+
+// myLibrary.addBook(myBook.bookCopy)
 export { Library, Book, Author, Publisher };
