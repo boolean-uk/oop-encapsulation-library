@@ -37,6 +37,22 @@ class Book {
         this.#genre = genre
         this.#publicationDate = publicationDate
     }
+
+    get title() {
+        return this.#title
+    }
+
+    get author() {
+        return this.#author
+    }
+
+    get genre() {
+        return this.#genre
+    }
+
+    get publicationDate() {
+        return this.#publicationDate
+    }
 }
 
 export { Book }
