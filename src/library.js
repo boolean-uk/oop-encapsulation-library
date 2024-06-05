@@ -19,7 +19,7 @@ class Library {
         const foundBook = this.#books.find((book) => 
             book.title === title &&
             book.author === author)
-
+            
         const foundBookIndex = this.#books.indexOf(foundBook)
 
         if(!foundBook) {
@@ -27,6 +27,8 @@ class Library {
         }
 
          this.#books.splice(foundBookIndex, 1)
+
+         return foundBook
     }
 }
 
@@ -53,3 +55,4 @@ class Book {
 
 }
 
+export default Library
