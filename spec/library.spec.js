@@ -32,7 +32,7 @@ describe('Library', () => {
 
     it('should remove a book from the library', () => {
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
-        library.removeBook('Weave')
+        library.removeBook('We')
         expect(library.listBooks()).not.toContain('We')
     })
 
