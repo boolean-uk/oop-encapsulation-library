@@ -10,11 +10,18 @@ describe('Book', () => {
     })
 
     it('should keep the title, author and publication year immutable', () => {
-        const book = new Book ('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
+       const book = new Book ('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
        expect(book.getTitle()).toBe('We')
        expect(book.getAuthor()).toBe('Yevgeny Zamyatin')
        expect(book.getGenre()).toBe('Dystopian Fiction')
        expect(book.getPublicationYear()).toBe('1924')
+    })
+
+    it('should throw an error if any book detail is missing', () => {
+        expect(() => new Book('', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')).toThrowError('All book details must be provided')
+        expect(() => new Book('We', '', 'Dystopian Fiction', '1924')).toThrowError('All book details must be provided')
+        expect(() => new Book('We', 'Yevgeny Zamyatin', '', '1924')).toThrowError('All book details must be provided')
+        expect(() => new Book('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '')).toThrowError('All book details must be provided')
     })
 })
 
@@ -34,6 +41,14 @@ describe('Library', () => {
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
         library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')
         expect(library.listBooks().length).toBe(1)
+    })
+
+    it('should not add a book if any detail is missing', () => {
+        expect(() => library.addBook('', 'Yevgeny Zamyatin', 'Dystopian Fiction', '1924')).toThrowError('All book details must be provided')
+        expect(() => library.addBook('We', '', 'Dystopian Fiction', '1924')).toThrowError('All book details must be provided')
+        expect(() => library.addBook('We', 'Yevgeny Zamyatin', '', '1924')).toThrowError('All book details must be provided')
+        expect(() => library.addBook('We', 'Yevgeny Zamyatin', 'Dystopian Fiction', '')).toThrowError('All book details must be provided')
+        expect(library.listBooks()).toEqual([])
     })
 
     it('should remove a book from the library', () => {

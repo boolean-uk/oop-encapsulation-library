@@ -5,6 +5,9 @@ class Book {
     #publicationYear
 
     constructor(title, author, genre, publicationYear) {
+        if(!title || !author || !genre || !publicationYear) {
+            throw new Error('All book details must be provided')
+        }
         this.#title = title
         this.#author = author
         this.#genre = genre
@@ -33,12 +36,19 @@ class Library {
     #books = []
 
     addBook(title, author, genre, publicationYear) {
-        if (!this.#books.some(book => book.getTitle() === title)) {
-        const book = new Book(title, author, genre, publicationYear)
-        this.#books.push(book)
-        console.log(`Book added: ${title}`)
-    } else {
-        console.log(`Book already exists: ${title}`)
+        if (!title || !author || !genre || !publicationYear) {
+            throw new Error('All books details must be provided')
+        }
+        try {
+            const book = new Book(title, author, genre, publicationYear)
+            if (!this.#books.some(b => b.getTitle() === title)) {
+                 this.#books.push(book)
+                 console.log(`Book added: ${title}`)
+            } else {
+                 console.log(`Book already exists: ${title}`)
+            }
+        } catch (error) {
+                 console.error(`Failed to add book: ${error.message}`)
     }
 }
 
