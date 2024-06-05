@@ -7,19 +7,26 @@ class Library {
     addBook(bookData) {
         const newBook = new Book(bookData)
         this.#books.push(newBook)
-        return this.books
+        return this.displayBooks()
     }
 
-    removeBook(title, author) {
+    removeBook(author, title) {
         const filteredArr = this.#books.filter((element) => {
-            return !element.title === title && element.author === author
+            const isMatching =
+                element.title === title && element.author === author
+
+            return !isMatching
         })
 
         this.#books = [...filteredArr]
     }
 
-    get books() {
-        return [...this.#books]
+    displayBooks() {
+        const mappedBooks = this.#books.map((element) => {
+            return element.bookInfo
+        })
+
+        return mappedBooks
     }
 }
 
@@ -31,8 +38,6 @@ class Book {
 
     constructor(book) {
         const { author, title, publicationDate, genre } = book
-
-        console.log(author, title, publicationDate, genre)
 
         if (!author | !title || !publicationDate || !genre) {
             throw new Error('Invalid book data')
@@ -58,6 +63,15 @@ class Book {
 
     get genre() {
         return this.#genre
+    }
+
+    get bookInfo() {
+        return {
+            author: this.#author,
+            title: this.#title,
+            publicationDate: this.#publicationDate,
+            genre: this.#genre,
+        }
     }
 }
 
