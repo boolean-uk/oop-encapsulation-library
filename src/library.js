@@ -37,7 +37,7 @@ class Library {
 
     addBook(title, author, genre, publicationYear) {
         if (!title || !author || !genre || !publicationYear) {
-            throw new Error('All books details must be provided')
+            throw new Error('All book details must be provided')
         }
         try {
             const book = new Book(title, author, genre, publicationYear)
