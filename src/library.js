@@ -78,15 +78,5 @@ class Publisher {
     }
 }
 
-const library = new Library()
-
-const george = new Author('George R.R. Martin', 80, 'georgie@hotmail.com')
-const john = new Author('John Flanagan', 40, 'johnny@hotmail.com')
-const penguin = new Publisher('penguin', 'somewebsite')
-library.addBook('Game of Thrones', george, 'Fantasy', '01-08-1996', penguin)
-library.addBook('The Ruins of Gorlan', john, 'Fantasy', '01-11-2004',penguin)
-
-console.log(library.books)
-
 export default Library
 export { Author, Publisher }
