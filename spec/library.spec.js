@@ -43,7 +43,7 @@ describe('Library', () => {
     })
 
     it('should not remove a non-existent book from the library', () => {
-        library.removeBook('Alice In Wonderland')
+        library.removeBook('We')
         expect(library.listBooks()).not.toContain('We')
     })
 

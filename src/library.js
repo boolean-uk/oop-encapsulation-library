@@ -52,7 +52,6 @@ class Library {
         }
     }
     
-
     listBooks() {
         const bookTitles = this.#books.map(book => book.getTitle())
         console.log(`Books in library: ${bookTitles.join(', ')}`)
