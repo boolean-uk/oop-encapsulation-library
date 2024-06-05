@@ -9,16 +9,22 @@ class Library {
         return structuredClone(this.#books)
     }
 
-    addBook(title, authorName, AuthorAge, AuthorEmail, genre, publicationDate, publisherName, publisherWebsite) {
-        const bookToAdd = new Book(title, authorName, AuthorAge, AuthorEmail, genre, publicationDate, publisherName, publisherWebsite)
+    addBook(title, author, genre, publicationDate, publisher) {
+        const bookToAdd = new Book(title, author, genre, publicationDate, publisher)
+
+        if (!bookToAdd.book.author.age || !bookToAdd.book.author.name || !bookToAdd.book.author.email) {
+            throw 'author must have a name, age and email'
+        }
+
+        if (!bookToAdd.book.publisher.name || !bookToAdd.book.publisher.website) {
+            throw 'publisher must have a name and website'
+        }
 
         this.#books.push(bookToAdd.book)
     }
 
-    removeBook(title, author) {
-        const foundBook = this.#books.find((book) => 
-            book.title === title &&
-            book.author === author)
+    removeBook(title) {
+        const foundBook = this.#books.find((book) => book.title === title)
             
         const foundBookIndex = this.#books.indexOf(foundBook)
 
@@ -38,12 +44,12 @@ class Book {
     #publicationDate
     #publisher
     
-    constructor(title, authorName, AuthorAge, AuthorEmail, genre, publicationDate, publisherName, publisherWebsite) {
+    constructor(title, author, genre, publicationDate, publisher) {
         this.#title = title
-        this.#author = new Author(authorName, AuthorAge, AuthorEmail)
+        this.#author = author
         this.genre = genre
         this.#publicationDate = publicationDate
-        this.#publisher = new Publisher(publisherName, publisherWebsite)
+        this.#publisher = publisher
     }
 
     get book() {
@@ -72,4 +78,15 @@ class Publisher {
     }
 }
 
+const library = new Library()
+
+const george = new Author('George R.R. Martin', 80, 'georgie@hotmail.com')
+const john = new Author('John Flanagan', 40, 'johnny@hotmail.com')
+const penguin = new Publisher('penguin', 'somewebsite')
+library.addBook('Game of Thrones', george, 'Fantasy', '01-08-1996', penguin)
+library.addBook('The Ruins of Gorlan', john, 'Fantasy', '01-11-2004',penguin)
+
+console.log(library.books)
+
 export default Library
+export { Author, Publisher }
