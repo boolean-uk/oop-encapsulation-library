@@ -8,7 +8,7 @@ class Library {
 	}
 
 	get books() {
-		return this.#books
+		return [...this.#books]
 	}
 
 	addBook(title, author, pubDate, genre) {
@@ -47,3 +47,8 @@ class Library {
 
 
 export default Library
+
+const lib = new Library
+lib.addBook("Mort", "Terry Pratchett", "199-something", "Fantacy")
+
+console.log(lib.books);
