@@ -38,7 +38,7 @@ class Library {
 		const bookToRemove = this.searchBook(title)
 		if (bookToRemove !== -1) {
 			this.#books.splice(bookToRemove, 1)
-			console.log(`${title} was succesfully removed form the library`)
+
 		} else {
 			throw new Error(`${title} does not exist in the library`)
 		}
