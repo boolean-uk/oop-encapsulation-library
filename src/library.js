@@ -13,7 +13,7 @@ class Library {
     removeBook(author, title) {
         const filteredArr = this.#books.filter((element) => {
             const isMatching =
-                element.title === title && element.author === author
+                element.title === title && element.author.name === author
 
             return !isMatching
         })
@@ -43,14 +43,14 @@ class Book {
             throw new Error('Invalid book data')
         }
 
-        this.#author = author
+        this.#author = new Author(author)
         this.#title = title
         this.#publicationDate = publicationDate
         this.#genre = genre
     }
 
     get author() {
-        return this.#author
+        return { ...this.#author }
     }
 
     get title() {
@@ -75,6 +75,15 @@ class Book {
     }
 }
 
+class Author {
+    constructor(authorObj) {
+        const { name, age, email } = authorObj
+        this.name = name
+        this.age = age
+        this.email = email
+    }
+}
+
 export default Library
 
-export { Book }
+export { Book , Author}
