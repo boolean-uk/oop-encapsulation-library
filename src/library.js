@@ -6,7 +6,7 @@ class Library {
     }
 
     get books() {
-        return this.#books
+        return [...this.#books]
     }
 
     addBook(title, author, genre, publicationDate, publisher) {
