@@ -1,5 +1,4 @@
 import { Book } from "./book.js"
-import { BooksStore } from "./booksList.js"
 
 class Library{
   #booksList
@@ -38,6 +37,8 @@ class Library{
     }
   }
 }
+
+export { Library }
 
 const myLibrary = new Library()
 const gotBook1 = new Book('Game of Throns', 'George R. R. Martin','Fantasy', '1991')
