@@ -8,18 +8,10 @@ class Book{
     this.#author = author
     this.#genre = genre
     this.#pDate = pDate
+    
   }
 
-  getBook(){
-      return {
-        title : this.#title,
-        author : this.#author,
-        genre : this.#genre,
-        pDate : this.#pDate
-    }
-  }
-
-  get bookInfo(){
+  get getBook(){
     return {
       title : this.#title,
       author : this.#author,
