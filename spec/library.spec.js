@@ -1,5 +1,5 @@
-import Library from "/Users/samisaeed/Boolean/oop-encapsulation-library/src/library.js";
-import Book from "/Users/samisaeed/Boolean/oop-encapsulation-library/src/book.js";
+import Library from "../src/library.js";
+import Book from "../src/book.js";
 
 describe("Library", function () {
   let library, book1, book2;
