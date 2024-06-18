@@ -1,4 +1,4 @@
-import Book from "/Users/samisaeed/Boolean/oop-encapsulation-library/src/book.js";
+import Book from "../src/book.js";
 
 describe("Book", function () {
   let book;
